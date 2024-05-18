@@ -18,7 +18,8 @@ class Cross(Move):
     pass
 
 class Board:
-    def __init__(self):
+    def __init__(self, turn):
+        self.turn = turn
         self.board: List[List[Elements]] = []
         self.blacks = self.whites = 12 #Количество шашек.
         self.black_damas = self.white_damas = 0 #Количество дамок.
@@ -51,9 +52,9 @@ class Board:
             for col in range (COLS):
                 if col % 2 == ((row + 1) % 2): #Подсчёт каждого столбца и строки поля для избежания неправильной подстановки элемента поля. 
                     if row < 3: #Подсчитывает первые 3 строки поля для заполнения.
-                        self.board[row].append(Elements(row, col, WHITE)) #Заполнение белыми элементами.
+                        self.board[row].append(Elements(row, col, WHITE, self.turn)) #Заполнение белыми элементами.
                     elif row > 4: #Подсчитывает остальные строки поля для заполнения.
-                        self.board[row].append(Elements(row, col, LIGHT_BLACK)) #Заполение чёрными элементами.
+                        self.board[row].append(Elements(row, col, LIGHT_BLACK, self.turn)) #Заполение чёрными элементами.
                     else:
                         self.board[row].append(0) #Служит разделителем для элементов поля. Чередуется с существующими значениями. Является пустотой.
                 else:

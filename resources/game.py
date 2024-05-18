@@ -3,8 +3,8 @@ from .variables import LIGHT_BLACK, WHITE, BLUE, SQUARE
 from resources.board import Board
 
 class Game:
-    def __init__(self, window): 
-        self._init()
+    def __init__(self, window, turn): 
+        self._init(turn)
         self.window = window
     
     def updating_game(self): #Обновление игры.
@@ -12,9 +12,9 @@ class Game:
         self.draw_valid_moves(self.valid_moves)
         pygame.display.update()
 
-    def _init(self):
+    def _init(self, turn):
         self.selected = None
-        self.board = Board()
+        self.board = Board(turn)
         self.turn = LIGHT_BLACK
         self.valid_moves = {}
 
