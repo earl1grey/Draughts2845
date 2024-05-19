@@ -20,6 +20,8 @@ font_small = pygame.font.SysFont(None, 50)
 bg = pygame.image.load('assets/background_menu.png')
 black = pygame.image.load('assets/black.png')
 white = pygame.image.load('assets/white.png')
+on = pygame.image.load('assets/on.png')
+off = pygame.image.load('assets/off.png')
 
 pygame.mixer.init()
 music = pygame.mixer.music.load('assets/music.ogg')
@@ -128,11 +130,17 @@ def options(): #Меню настройки
         
         draw_text('Кто ходит первым:', font_small, (0, 0, 0), WINDOW, 250, 200)
         
+        draw_text('Музыка:', font_small, (0, 0, 0), WINDOW, 330, 400)
+
         mx, my = pygame.mouse.get_pos()
 
         button_4 = WINDOW.blit(white, (260, 250))
         
         button_5 = WINDOW.blit(black, (460, 250))
+
+        button_6 = WINDOW.blit(on, (260, 450))
+
+        button_7 = WINDOW.blit(off, (460, 450))
 
         if button_4.collidepoint((mx, my)):
             global turn
@@ -142,6 +150,14 @@ def options(): #Меню настройки
         if button_5.collidepoint((mx, my)):
             if click:
                 turn = LIGHT_BLACK
+
+        if button_6.collidepoint((mx, my)):
+            if click:
+                pygame.mixer.music.play(-1)
+
+        if button_7.collidepoint((mx, my)):
+            if click:
+                pygame.mixer.music.stop()
 
         click = False
 

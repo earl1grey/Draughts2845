@@ -78,7 +78,7 @@ class Board:
                     self.whites -= 1
     
     def pobeda(self): #Завершение игры.
-        if self.blacks <= 0:
+        if self.blacks <= 11:
             return WHITE
         elif self.whites <= 0:
             return LIGHT_BLACK
