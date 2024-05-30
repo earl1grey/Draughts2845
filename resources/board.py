@@ -90,7 +90,6 @@ class Board:
             (move.row_to, move.col_to): move.kill
             for move in self._check_is_move(element.row, element.col, element.color)
         }
-        print(moves)
         if any(moves.values()):
             moves = {
                 coords: kills

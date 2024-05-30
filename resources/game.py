@@ -2,6 +2,10 @@ import pygame
 from .variables import LIGHT_BLACK, WHITE, BLUE, SQUARE
 from resources.board import Board
 
+pygame.mixer.init()
+move_sound = pygame.mixer.Sound('assets/move.ogg')
+select_sound = pygame.mixer.Sound('assets/select.ogg')      
+
 class Game:
     def __init__(self, window, turn): 
         self._init(turn)
@@ -35,8 +39,9 @@ class Game:
         if element != 0 and element.color == self.turn:
             self.selected = element
             self.valid_moves = self.board.get_val_moves(element)
+            select_sound.play()
             return True
-            
+
         return False
 
     def _moving(self, row, col): #Система хода эелемента.
@@ -61,6 +66,8 @@ class Game:
         self.valid_moves = {}
         if self.turn == LIGHT_BLACK:
             self.turn = WHITE
+            move_sound.play()
         else:
             self.turn = LIGHT_BLACK
+            move_sound.play()
 

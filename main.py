@@ -25,7 +25,7 @@ off = pygame.image.load('assets/off.png')
 
 pygame.mixer.init()
 music = pygame.mixer.music.load('assets/music.ogg')
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play(-1)  
 
 turn = LIGHT_BLACK
 
@@ -119,7 +119,6 @@ def main(): #Запуск игры. Функция цикла событий. О
 
     pygame.quit()
 
-
 def options(): #Меню настройки
     global click
     running = True
@@ -203,6 +202,3 @@ def restart(): #Функция рестарта
                 quit()
 
 main_menu()
-
-
-
