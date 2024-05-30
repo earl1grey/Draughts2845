@@ -27,6 +27,9 @@ pygame.mixer.init()
 music = pygame.mixer.music.load('assets/music.ogg')
 pygame.mixer.music.play(-1)  
 
+start_sound = pygame.mixer.Sound('assets/startgame.ogg')
+menu_button_sound = pygame.mixer.Sound('assets/menu_button.ogg')
+
 turn = LIGHT_BLACK
 
 def draw_text(text, font, color, surface, x, y): #Отрисовка текста
@@ -56,6 +59,7 @@ def main_menu(): #Главное меню
 
         if button_1.collidepoint((mx, my)):
             if click:
+                menu_button_sound.play()
                 main()
 
         if button_2.collidepoint((mx, my)):
@@ -65,6 +69,7 @@ def main_menu(): #Главное меню
 
         if button_3.collidepoint((mx, my)):
             if click:
+                menu_button_sound.play()
                 pygame.quit()
 
         click = False
@@ -94,6 +99,8 @@ def main(): #Запуск игры. Функция цикла событий. О
     speed = pygame.time.Clock() #Отвечает за стабильную скорость игры.
     game = Game(WINDOW, turn)
     
+    start_sound.play()
+
     while run:
         speed.tick(FPS) #Отвечает за количество кадров в секунду.
 
@@ -122,6 +129,9 @@ def main(): #Запуск игры. Функция цикла событий. О
 def options(): #Меню настройки
     global click
     running = True
+
+    menu_button_sound.play()
+
     while running:
         WINDOW.blit(bg, (0, 0))
         
@@ -144,18 +154,22 @@ def options(): #Меню настройки
         if button_4.collidepoint((mx, my)):
             global turn
             if click:
+                menu_button_sound.play()
                 turn = WHITE
         
         if button_5.collidepoint((mx, my)):
             if click:
+                menu_button_sound.play()
                 turn = LIGHT_BLACK
 
         if button_6.collidepoint((mx, my)):
             if click:
+                menu_button_sound.play()
                 pygame.mixer.music.play(-1)
 
         if button_7.collidepoint((mx, my)):
             if click:
+                menu_button_sound.play()
                 pygame.mixer.music.stop()
 
         click = False
